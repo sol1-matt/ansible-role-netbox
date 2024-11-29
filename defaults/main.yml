@@ -76,6 +76,9 @@ netbox_ldap_config_template: netbox_ldap_config.py.j2
 
 netbox_local_settings_file:
 
+netbox_custom_validators_enabled: false
+netbox_custom_validators_file: 
+
 netbox_napalm_enabled: false
 netbox_napalm_packages:
   - napalm

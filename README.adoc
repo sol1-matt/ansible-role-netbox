@@ -414,6 +414,33 @@ can be unique to allow for different deployments from the one ansible repository
 
 [source,yaml]
 ----
+netbox_custom_validators_enabled: true
+netbox_custom_validators_file: netbox_custom_validators.py
+----
+
+Toggle `netbox_custom_validators_enabled` to `true` to create a custom validator file for
+NetBox. `netbox_custom_validators_file` should be the path to your custom validator file - by
+default, Ansible will search your playbook's `files/` directory for this.
+You can find an example in `examples/`. You will also need to set
+`netbox_config.CUSTOM_VALIDATORS` to
+
+```
+CUSTOM_VALIDATORS: |
+    {
+        "dcim.device": (
+            'custom_validators.DeviceValidator',
+        ),
+        "virtualization.virtualmachine": (
+            'custom_validators.VirtualMachineValidator',
+        )
+    }
+```
+
+TIP: By default, a local (non-LDAP) superuser will still be created by this
+role. If this is undesirable, consider toggling `netbox_superuser_enabled`.
+
+[source,yaml]
+----
 netbox_napalm_enabled: false
 netbox_napalm_packages:
   - napalm
