@@ -173,7 +173,7 @@
 - name: Symlink/Remove NetBox local_settings.py file into/from the active NetBox release
   file:
     src: "{{ netbox_shared_path + '/custom_validators.py' if netbox_custom_validators_enabled else omit }}"
-    dest: "{{ netbox_config_path }}/custom_validators.py"
+    dest: "{{ netbox_current_path }}/netbox/custom_validators.py"
     owner: "{{ netbox_user }}"
     group: "{{ netbox_group }}"
     state: "{{ 'link' if netbox_custom_validators_enabled else 'absent' }}"
