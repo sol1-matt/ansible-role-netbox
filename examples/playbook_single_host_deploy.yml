@@ -24,8 +24,9 @@
       - name: "{{ netbox_database_user }}"
         role_attr_flags: CREATEDB,NOSUPERUSER
     redis_bind: 127.0.0.1
-    redis_version: 6.0.9
-    redis_checksum: sha256:dc2bdcf81c620e9f09cfd12e85d3bc631c897b2db7a55218fd8a65eaa37f86dd
+    redis_version: 6.2.14
+    redis_download_url: "https://download.redis.io/releases/redis-{{ redis_version }}.tar.gz"
+    redis_checksum: sha256:34e74856cbd66fdb3a684fb349d93961d8c7aa668b06f81fd93ff267d09bc277
   pre_tasks:
     - name: Enable Subscription Manager Repos
       rhsm_repository:

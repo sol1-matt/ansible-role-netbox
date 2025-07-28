@@ -22,6 +22,7 @@ netbox_database_user: netbox
 # netbox_database_host: localhost
 netbox_database_port: 5432
 # netbox_database_socket: /var/run/postgresql
+netbox_database_alt_socket: false
 netbox_database_conn_age: 0
 netbox_database_options: {}
 netbox_database_maintenance: "postgres"
@@ -80,6 +81,7 @@ netbox_napalm_enabled: false
 netbox_napalm_packages:
   - napalm
 
+netbox_pip_extra_args: []  # Additional pip arguments (e.g., ['--no-cache-dir', '-i', 'https://pypi.example.com/simple'])
 netbox_pip_packages: []
 netbox_pip_constraints:
   # Blacklist pynacl 1.3.0 due to https://github.com/pyca/pynacl/issues/479

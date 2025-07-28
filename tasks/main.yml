@@ -52,6 +52,7 @@
   when:
     - netbox_database_socket is defined
     - netbox_database_host is not defined
+    - not netbox_database_alt_socket
 
 - name: Ensure Postgres database exists (via TCP)
   community.postgresql.postgresql_db:
@@ -73,6 +74,9 @@
     state: "{{ 'latest' if netbox_keep_uwsgi_updated else 'present' }}"
     umask: "0022"
     virtualenv: "{{ omit if not netbox_uwsgi_in_venv else netbox_virtualenv_path }}"
+    extra_args: >-
+      {{ netbox_pip_extra_args | default([])
+         | join(' ') }}
   environment:
     PATH: "/usr/local/bin:{{ _path }}"
   notify:
