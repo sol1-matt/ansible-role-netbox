@@ -76,6 +76,7 @@ netbox_ldap_enabled: false
 netbox_ldap_config_template: netbox_ldap_config.py.j2
 
 # netbox_local_settings_file: "{{ playbook_dir }}/files/netbox/local_settings.py"
+netbox_config_keys_noformat: []
 
 netbox_napalm_enabled: false
 netbox_napalm_packages:

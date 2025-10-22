@@ -101,12 +101,14 @@ METRICS_ENABLED = True
 {% endif %}
 
 {% for setting, value in _netbox_config.items() %}
-{%      if value in [True, False] %}
+{%		if setting in netbox_config_keys_noformat %}
+{{ setting }} = {{ value }}
+{%      elif value in [True, False] %}
 {{ setting }} = {{ 'True' if value else 'False' }}
 {%      elif value is string or value is number %}
 {{ setting }} = {{ value | to_nice_json }}
 {%      else %}
-{{ setting }} = json.loads(r'''{{ value | to_json }}''')
+{{ setting }} = {{ value | to_json(indent=4) }}
 {%      endif %}
 {% endfor %}
 
