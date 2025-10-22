@@ -19,6 +19,7 @@ galaxy_info:
         - stretch
         - bullseye
         - bookworm
+        - trixie
     - name: EL
       versions:
         - 7

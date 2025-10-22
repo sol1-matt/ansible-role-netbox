@@ -101,13 +101,13 @@ METRICS_ENABLED = True
 {% endif %}
 
 {% for setting, value in _netbox_config.items() %}
-{%		if setting in netbox_config_keys_noformat %}
-{{ setting }} = {{ value }}
-{%      elif value in [True, False] %}
+{%      if value in [True, False] %}
 {{ setting }} = {{ 'True' if value else 'False' }}
 {%      elif value is string or value is number %}
 {{ setting }} = {{ value | to_nice_json }}
 {%      else %}
-{{ setting }} = {{ value | to_json(indent=4) }}
+{{ setting }} = json.loads(r'''{{ value | to_json }}''')
 {%      endif %}
 {% endfor %}
+
+# vim: ft=python
